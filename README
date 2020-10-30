@@ -24,5 +24,5 @@ opt/splunk/bin/splunk enable boot-start -user splunk
 #Chage the owner of Splunk files to splunk user and splunk group
 chown -R splunk:splunk /opt/splunk
 
-#Restart Splunk
+#Start Splunk
 opt/splunk/bin/splunk start
