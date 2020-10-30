@@ -1,0 +1,28 @@
+#INSTALL SPLUNK
+
+#Switch to root user
+sudo su -
+
+#Extract Splunk .tgz file into opt directory
+tar -xvzf splunk_package_name.tgz -C /opt
+
+#Start Splunk with accept license parameter
+opt/splunk/bin/splunk start --accept-license
+
+#Stop Splunk
+opt/splunk/bin/splunk stop
+
+#Create Group "splunk"
+groupadd splunk
+
+#Create the user "splunk" and add it to "splunk" group
+useradd -g splunk splunk
+
+#Configure Splunk to run as non-splunk user
+opt/splunk/bin/splunk enable boot-start -user splunk
+
+#Chage the owner of Splunk files to splunk user and splunk group
+chown -R splunk:splunk /opt/splunk
+
+#Restart Splunk
+opt/splunk/bin/splunk start
