@@ -3,14 +3,17 @@
 #Switch to root user
 sudo su -
 
+#WGET Link to download splunk TGZ file
+wget -O splunk-8.1.0-f57c09e87251-Linux-x86_64.tgz 'https://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=linux&version=8.1.0&product=splunk&filename=splunk-8.1.0-f57c09e87251-Linux-x86_64.tgz&wget=true'
+
 #Extract Splunk .tgz file into opt directory
 tar -xvzf splunk_package_name.tgz -C /opt
 
 #Start Splunk with accept license parameter
-opt/splunk/bin/splunk start --accept-license
+/opt/splunk/bin/splunk start --accept-license
 
 #Stop Splunk
-opt/splunk/bin/splunk stop
+/opt/splunk/bin/splunk stop
 
 #Create Group "splunk"
 groupadd splunk
@@ -19,10 +22,10 @@ groupadd splunk
 useradd -g splunk splunk
 
 #Configure Splunk to run as non-splunk user
-opt/splunk/bin/splunk enable boot-start -user splunk
+/opt/splunk/bin/splunk enable boot-start -user splunk
 
 #Chage the owner of Splunk files to splunk user and splunk group
 chown -R splunk:splunk /opt/splunk
 
 #Start Splunk
-opt/splunk/bin/splunk start
+/opt/splunk/bin/splunk start
